@@ -1,0 +1,945 @@
+{
+    "openapi": "3.0.3",
+    "info": {
+        "title": "ReportServer APIs",
+        "description": "[ Base URL: report.beatinfo.biz/api ]",
+        "contact": {
+            "email": "koshou@koshou.com"
+        },
+        "version": "0.4.5"
+    },
+    "externalDocs": {
+        "description": "Find out more about Swagger",
+        "url": "http://swagger.io"
+    },
+    "servers": [{
+        "url": "koshou.com"
+    }],
+    "tags": [{
+            "name": "report",
+            "description": "Everything about report",
+            "externalDocs": {
+                "description": "Find out more",
+                "url": "http://swagger.io"
+            }
+        },
+        {
+            "name": "abnormal",
+            "description": "Everything about abnormal",
+            "externalDocs": {
+                "description": "Find out more",
+                "url": "http://swagger.io"
+            }
+        },
+        {
+            "name": "statistic",
+            "description": "Everything about statistic",
+            "externalDocs": {
+                "description": "Find out more",
+                "url": "http://swagger.io"
+            }
+        },
+        {
+            "name": "login",
+            "description": "Everything about login",
+            "externalDocs": {
+                "description": "Find out more",
+                "url": "http://swagger.io"
+            }
+        }
+    ],
+    "paths": {
+        "/report/create": {
+            "post": {
+                "tags": [
+                    "report"
+                ],
+                "summary": "First step which is the request of generate report",
+                "description": "create report item",
+                "requestBody": {
+                    "description": "json type",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/report_create"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/responses/report_create"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Authentication failed",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/responses/str"
+                                }
+                            }
+                        }
+                    },
+                    "402": {
+                        "description": "Data integrity error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/responses/str"
+                                }
+                            }
+                        }
+                    },
+                    "505": {
+                        "description": "Exception",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/responses/str"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/report/send": {
+            "post": {
+                "tags": [
+                    "report"
+                ],
+                "summary": "Send zip file",
+                "description": "send zip file, [content example](https://drive.google.com/file/d/1C9V9ql1PiaX05LPIEr7PqIjEVzuzE14d/view?usp=share_link)",
+                "requestBody": {
+                    "description": "form-data type",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/report_send"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/responses/report_send"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Authentication failed",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/responses/str"
+                                }
+                            }
+                        }
+                    },
+                    "402": {
+                        "description": "Data integrity error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/responses/str"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Report index error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/responses/str"
+                                }
+                            }
+                        }
+                    },
+                    "505": {
+                        "description": "Exception",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/responses/str"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/report/update": {
+            "post": {
+                "tags": [
+                    "report"
+                ],
+                "summary": "Update end flag",
+                "description": "Use for when zip file send done ",
+                "requestBody": {
+                    "description": "json type",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/report_update"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/responses/report_update"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Authentication failed",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/responses/str"
+                                }
+                            }
+                        }
+                    },
+                    "402": {
+                        "description": "Data integrity error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/responses/str"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Report index error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/responses/str"
+                                }
+                            }
+                        }
+                    },
+                    "505": {
+                        "description": "Exception",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/responses/str"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/report/query/{report_index}": {
+            "get": {
+                "tags": [
+                    "report"
+                ],
+                "summary": "Query progress of which report_index",
+                "description": "query status",
+                "parameters": [{
+                    "name": "report_index",
+                    "in": "path",
+                    "description": "report_index get from report/create api",
+                    "required": true,
+                    "schema": {
+                        "type": "integer"
+                    }
+                }],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation, show each status",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/responses/report_query"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Authentication failed",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/responses/str"
+                                }
+                            }
+                        }
+                    },
+                    "402": {
+                        "description": "report index error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/responses/str"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Algorithm running including wait for start",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/responses/str"
+                                }
+                            }
+                        }
+                    },
+                    "405": {
+                        "description": "Algorithm Failed",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/responses/str"
+                                }
+                            }
+                        }
+                    },
+                    "505": {
+                        "description": "Exception",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/responses/str"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/report/pdf/{report_index}": {
+            "get": {
+                "tags": [
+                    "report"
+                ],
+                "summary": "Get report PDF file which success at report/query api ",
+                "description": "get report pdf",
+                "parameters": [{
+                    "name": "report_index",
+                    "in": "path",
+                    "description": "report_index get from report/create api",
+                    "required": true,
+                    "schema": {
+                        "type": "integer"
+                    }
+                }],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation, return binary pdf file",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/responses/report_pdf"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Authentication failed",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/responses/str"
+                                }
+                            }
+                        }
+                    },
+                    "402": {
+                        "description": "Report index error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/responses/str"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Get report fail",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/responses/str"
+                                }
+                            }
+                        }
+                    },
+                    "505": {
+                        "description": "Exception",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/responses/str"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/abnormal": {
+            "post": {
+                "tags": [
+                    "abnormal"
+                ],
+                "summary": "ECG abnormal",
+                "description": "ECG abnormal",
+                "requestBody": {
+                    "description": "json type",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/abnormal"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/responses/abnormal"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Authentication failed",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/responses/str"
+                                }
+                            }
+                        }
+                    },
+                    "402": {
+                        "description": "Data integrity error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/responses/str"
+                                }
+                            }
+                        }
+                    },
+                    "505": {
+                        "description": "Exception",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/responses/str"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/statistic": {
+            "get": {
+                "tags": [
+                    "statistic"
+                ],
+                "summary": "get statistic detail by report_id ",
+                "description": "*limited IP address",
+                "parameters": [{
+                    "name": "report_id",
+                    "in": "path",
+                    "description": "report_id",
+                    "required": true,
+                    "schema": {
+                        "type": "integer"
+                    }
+                }],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/responses/statistic"
+                                }
+                            }
+                        }
+                    },
+                    "505": {
+                        "description": "Exception",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/responses/str"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/statistic/all": {
+            "get": {
+                "tags": [
+                    "statistic"
+                ],
+                "summary": "get statistic all ",
+                "description": "*limited IP address",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/responses/statistic"
+                                }
+                            }
+                        }
+                    },
+                    "505": {
+                        "description": "Exception",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/responses/str"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/signup": {
+            "post": {
+                "tags": [
+                    "login"
+                ],
+                "summary": "Signup",
+                "description": "*limited IP address",
+                "requestBody": {
+                    "description": "json type",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/signup"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/responses/login"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Authentication failed",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/responses/str"
+                                }
+                            }
+                        }
+                    },
+                    "505": {
+                        "description": "Exception",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/responses/str"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/signin": {
+            "post": {
+                "tags": [
+                    "login"
+                ],
+                "summary": "Signin",
+                "description": "*limited IP address",
+                "requestBody": {
+                    "description": "json type",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/signin"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/responses/login"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Authentication failed",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/responses/str"
+                                }
+                            }
+                        }
+                    },
+                    "505": {
+                        "description": "Exception",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/responses/str"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "responses": {
+                "str": {
+                    "type": "object",
+                    "properties": {
+                        "message": {
+                            "type": "string",
+                            "example": "string"
+                        }
+                    }
+                },
+                "objs": {
+                    "type": "object",
+                    "properties": {
+                        "report_index": {
+                            "type": "integer",
+                            "example": 10
+                        }
+                    }
+                },
+                "objb": {
+                    "type": "object",
+                    "properties": {
+                        "result": {
+                            "type": "bool",
+                            "example": true
+                        }
+                    }
+                },
+                "report_create": {
+                    "type": "object",
+                    "properties": {
+                        "sucess_message": {
+                            "$ref": "#/components/schemas/responses/objs"
+                        }
+                    }
+                },
+                "report_send": {
+                    "type": "object",
+                    "properties": {
+                        "sucess_message": {
+                            "$ref": "#/components/schemas/responses/objb"
+                        }
+                    }
+                },
+                "report_update": {
+                    "type": "object",
+                    "properties": {
+                        "sucess_message": {
+                            "$ref": "#/components/schemas/responses/objb"
+                        }
+                    }
+                },
+                "report_query": {
+                    "type": "object",
+                    "properties": {
+                        "sucess_message": {
+                            "type": "object",
+                            "properties": {
+                                "status": {
+                                    "type": "integer",
+                                    "example": 123456789,
+                                    "description": "timestamp"
+                                }
+                            }
+                        }
+                    }
+                },
+                "report_pdf": {
+                    "type": "object",
+                    "properties": {
+                        "sucess_message": {
+                            "type": "object",
+                            "properties": {
+                                "file": {
+                                    "type": "string",
+                                    "example": "file.pdf",
+                                    "description": "pdf file"
+                                }
+                            }
+                        }
+                    }
+                },
+                "abnormal_objs": {
+                    "type": "object",
+                    "properties": {
+                        "type": {
+                            "type": "string",
+                            "example": "PVC",
+                            "description": "return many string of abnormal type"
+                        }
+                    }
+                },
+                "abnormal": {
+                    "type": "object",
+                    "properties": {
+                        "sucess_message": {
+                            "$ref": "#/components/schemas/responses/abnormal_objs"
+                        }
+                    }
+                },
+                "statistic": {
+                    "type": "object",
+                    "properties": {
+                        "status": {
+                            "type": "bool",
+                            "example": true
+                        },
+                        "data": {
+                            "type": "object",
+                            "example": {}
+                        },
+                        "code": {
+                            "type": "integer",
+                            "example": 200
+                        }
+                    }
+                },
+                "login": {
+                    "type": "object",
+                    "properties": {
+                        "status": {
+                            "type": "bool",
+                            "example": true
+                        },
+                        "data": {
+                            "type": "object",
+                            "example": {}
+                        },
+                        "code": {
+                            "type": "integer",
+                            "example": 200
+                        }
+                    }
+                }
+            },
+            "report_create": {
+                "required": [],
+                "type": "object",
+                "properties": {
+                    "report_code": {
+                        "type": "string",
+                        "example": "A001V1"
+                    },
+                    "user_id": {
+                        "type": "integer",
+                        "example": 0
+                    },
+                    "user_info": {
+                        "$ref": "#/components/schemas/user_info"
+                    },
+                    "report_start_tt": {
+                        "type": "integer",
+                        "example": 1662101927794
+                    },
+                    "report_end_tt": {
+                        "type": "integer",
+                        "example": 1662101927794
+                    }
+
+                }
+            },
+            "report_send": {
+                "required": [],
+                "type": "object",
+                "properties": {
+                    "report_index": {
+                        "type": "integer",
+                        "example": 10,
+                        "description": "Get from report/create api"
+                    },
+                    "zip_file": {
+                        "type": "form-data",
+                        "example": "file.zip"
+                    }
+                }
+            },
+            "report_update": {
+                "required": [],
+                "type": "object",
+                "properties": {
+                    "report_index": {
+                        "type": "integer",
+                        "example": 10,
+                        "description": "Get from report/create api"
+                    },
+                    "end_flag": {
+                        "type": "bool",
+                        "example": true
+                    }
+                }
+            },
+            "user_info": {
+                "required": [],
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "example": 1
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "Alex"
+                    },
+                    "email": {
+                        "type": "string",
+                        "example": "example@koshou.com"
+                    },
+                    "gender": {
+                        "type": "string",
+                        "example": "male"
+                    },
+                    "height": {
+                        "type": "string",
+                        "example": "180"
+                    },
+                    "weight": {
+                        "type": "string",
+                        "example": "80"
+                    },
+                    "birthday": {
+                        "type": "string",
+                        "example": "1911/11/11"
+                    },
+                    "age": {
+                        "type": "string",
+                        "example": "18"
+                    },
+                    "locale": {
+                        "type": "string",
+                        "example": "en"
+                    },
+                    "units": {
+                        "type": "string",
+                        "example": "mm"
+                    }
+                }
+            },
+            "algorithm_input": {
+                "required": [],
+                "type": "object",
+                "properties": {
+                    "report_start_tt": {
+                        "type": "integer",
+                        "example": 1662101927794
+                    },
+                    "report_end_tt": {
+                        "type": "integer",
+                        "example": 1662101927794
+                    }
+                }
+            },
+            "abnormal": {
+                "required": [],
+                "type": "object",
+                "properties": {
+                    "ecgs": {
+                        "type": "array",
+                        "example": [100, 100],
+                        "description": "length must be 250 /per second"
+                    }
+                }
+            },
+            "signup": {
+                "required": [],
+                "type": "object",
+                "properties": {
+                    "account": {
+                        "type": "string",
+                        "example": "string"
+                    },
+                    "password": {
+                        "type": "string",
+                        "example": "string"
+                    },
+                    "email": {
+                        "type": "string",
+                        "example": "string@xxx.com",
+                        "description": "must use company email signup"
+                    }
+                }
+            },
+            "signin": {
+                "required": [],
+                "type": "object",
+                "properties": {
+                    "account": {
+                        "type": "string",
+                        "example": "string"
+                    },
+                    "password": {
+                        "type": "string",
+                        "example": "string"
+                    }
+                }
+            }
+        }
+    }
+}
